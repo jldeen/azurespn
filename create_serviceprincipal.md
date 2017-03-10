@@ -26,7 +26,7 @@ password=service_principal_password
 tenant=azure_tenant_id
 ```
 
-To help you get started, we have created a [Service Principal Creation Script](local_scripts/create_serviceprincipal.sh), which needs to be run on your local machine. You will need to have [Azure CLI](https://docs.microsoft.com/azure/xplat-cli-install) installed. 
+To help you get started, I have created a [Service Principal Creation Script](local_scripts/create_serviceprincipal.sh), which needs to be run on your local machine. You will need to have [Azure CLI](https://docs.microsoft.com/azure/xplat-cli-install) installed. 
 
 To run the script save it to the root of your repository and give it executable permissions:
 
