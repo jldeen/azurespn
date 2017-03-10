@@ -1,6 +1,6 @@
 ## Create Azure Service Principal for Authentication
 
-To make it easy for you to deploy your application to Azure, we've built a script to create an Azure Service Principal.
+To make it easy for you to authenticate through a non-interactive session to Azure, I've built a script to create an Azure Service Principal.
 
 ## Pre-requisites
 
@@ -26,9 +26,9 @@ password=service_principal_password
 tenant=azure_tenant_id
 ```
 
-To help you get started, I have created a [Service Principal Creation Script](local_scripts/create_serviceprincipal.sh), which needs to be run on your local machine. You will need to have [Azure CLI](https://docs.microsoft.com/azure/xplat-cli-install) installed. 
+To help you get started, I created the [Service Principal Creation Script](local_scripts/create_serviceprincipal.sh), which needs to be run on your local machine. You will need to have [Azure CLI](https://docs.microsoft.com/azure/xplat-cli-install) installed. 
 
-To run the script save it to the root of your repository and give it executable permissions:
+To run the script, save it to the root of your repository and give it executable permissions:
 
 ```
 chmod +x local_scripts/create_serviceprincipal.sh
