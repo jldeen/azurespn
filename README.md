@@ -7,6 +7,7 @@ To make it easy for you to authenticate through a non-interactive session to Azu
 In order to run the script, you need the following installed:
 
 - Azure CLI
+- JQ
 
 ## Service Principal Creation and Authentication
 
