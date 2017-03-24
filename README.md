@@ -34,7 +34,7 @@ To run the script, save it to the root of your repository and give it executable
 ```
 chmod +x local_scripts/create_serviceprincipal.sh
 ```
-The above example assumes you are in the root of your repo. You will want to adjust the file path accordingly. It is recommended to run this script from root since you might need the encrypted env files available at the root, unless you specify a different path in your codeship-services.yml file.
+The above example assumes you are in the root of your repo. You will want to adjust the file path accordingly.
 
 Then run the script by typing the following: 
 ```
