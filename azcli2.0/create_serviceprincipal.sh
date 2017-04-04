@@ -44,21 +44,15 @@ echo
 spn=http://$name
 
 # Copy service principal to environment variables file
-echo "spn=$spn
-password=$password
-tenant=$tenant
-" > azure.env
-echo "azure.env created"
+export spn=$spn
+export password=$password
+export tenant=$tenant
 
-# Add azure.env to .gitignore
-echo "azure.env" >> .gitignore
-echo "azure.env copied to .gitignore"
-
-# Encrypt azure.env using CodeShip Jet
-# jet encrypt [--key-path=codeship.aes] plain_file encrypted_file
-jet encrypt azure.env azure.env.encrypted
-echo "Successfully encrypted azure.env"
-}
+echo "============== Environment Variables Created =============="
+echo 
+echo "Environment variable for your SPN $spn successfully created"
+echo "Environment variable for your Password $password successfully created"
+echo "Environment variable for your Tenant ID $tenant successfully created"
 
 # Azure Subscription Selection
     # Check for multiple subscriptions
