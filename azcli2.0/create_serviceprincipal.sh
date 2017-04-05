@@ -4,21 +4,28 @@
 # To view the available roles, see https://docs.microsoft.com/azure/active-directory/role-based-access-built-in-roles Default recommended is Contributor, which can manage everything except access
 
 # Read User Input to capture variables
-echo "This script will create a Service Principal (SPN) for Azure."
-echo
-echo "Enter a name for your SPN and press [ENTER]: "
-read name
-echo "The name you entered is $name."
-echo "Enter a password for your SPN and press [ENTER]: "
-read -s password    
-echo "Enter a role for your SPN and press [ENTER]. The default role suggested is Contributor: "
-read role
-echo "The role you entered is $role."
-echo 
-echo "Thank you for your input. Now proceeding with SPN creation..."
+    echo "This script will create a Service Principal (SPN) for Azure."
+    echo
+    echo "Enter a name for your SPN and press [ENTER]: "
+    read name
+    echo "The name you entered is $name."
+    echo "Enter a password for your SPN and press [ENTER]: "
+    read -s password    
+    echo "Enter a role for your SPN and press [ENTER]. The default role suggested is Contributor: "
+    read role
+    echo "The role you entered is $role."
+    echo 
+    echo "Thank you for your input. Now proceeding with SPN creation..."
 
 # Login - Complete this process using a browser
-az login
+    if az account show &>/dev/null; then
+            echo "You are already logged in to Azure..."
+        else
+            echo "Logging into Azure..."
+                az login
+                echo "Successfully logged into Azure..."
+    fi
+
 # Function for create_spn
 create_spn () {
 echo
@@ -34,30 +41,39 @@ az ad sp create-for-rbac \
     --verbose
 
 # Output service principal
-echo "Successfully created Service Principal."
-echo "==============Created Serivce Principal=============="
-echo "spn=http://$name" 
-echo "password=$password"
-echo "tenant=$tenant"
-echo 
-
-spn=http://$name
+    spn=http://$name
+    echo "Successfully created Service Principal."
+    echo 
+    echo "SPN Details:"
+    echo "spn=$spn" 
+    echo "password=$password"
+    echo "tenant=$tenant"
+    echo 
 
 # Copy service principal to environment variables file
+echo "Saving details to local env file in $(pwd)..."
 echo "spn=$spn
 password=$password
 tenant=$tenant
 " > azure.env
-echo "azure.env created"
+echo "azure.env created successfully..."
+echo
 
-# Add azure.env to .gitignore
-echo "azure.env" >> .gitignore
-echo "azure.env copied to .gitignore"
+# If previous SPN variables exist in ~/.bashrc, remove them but save .bak file
+    sed -e "/spn/d;/password/d;/tenant/d" -i .bak ~/.bashrc
 
-# Encrypt azure.env using CodeShip Jet
-# jet encrypt [--key-path=codeship.aes] plain_file encrypted_file
-jet encrypt azure.env azure.env.encrypted
-echo "Successfully encrypted azure.env"
+# Export environment variables from this script
+    echo "Exporting environment variables to ~/.bashrc..."
+    echo spn=$spn >> ~/.bashrc
+    echo password=$password >> ~/.bashrc
+    echo tenant=$tenant >> ~/.bashrc
+    echo "Exporting environment variables complete..."
+    echo
+    echo "Environment variables created..."
+    echo "Environment variable for your SPN '$spn' successfully created"
+    echo "Environment variable for your Password '$password' successfully created"
+    echo "Environment variable for your Tenant ID '$tenant' successfully created"
+    echo
 }
 
 # Azure Subscription Selection
@@ -100,7 +116,7 @@ echo "Successfully encrypted azure.env"
         shopt -s extglob #turn on extended pattern matching for +([0-9]) 
         while [ 1 ];
         do
-            read -p "Please make a selection and press [ENTER]:" menu_choice
+            read -p "Please make a selection and press [ENTER]: " menu_choice
 
     # Menu selection 
             case $menu_choice in
@@ -110,7 +126,7 @@ echo "Successfully encrypted azure.env"
                     then
                         echo
                         echo "Successfully set your subscription to $(az account list | jq -r --argjson v $menu_choice '.[$v] | .name')"
-                        create_spn
+                        create_spn                        
                         exit 0;
                 else
                     echo "Could not set your subscription. Please check your entry and try again." >&2

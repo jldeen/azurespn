@@ -61,7 +61,18 @@ The script will prompt you for a name, password and role. A description of each 
 
 NOTE: Your password needs to be a minimum of 12 characters and have some complexity incorporated to it. See more here: [Azure Password Policies](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-passwords-policy)
 
-The script will check for multiple subscriptions on your account, if found, you will be asked to select which subscription you wish to use prior to proceeding. The spn creation script will create a service principal for you and assign it the role you designate. The script will then export the necessary environment variables for the below command to work.
+The script will check for multiple subscriptions on your account, if found, you will be asked to select which subscription you wish to use prior to proceeding. The spn creation script will create a service principal for you and assign it the role you designate. 
+
+The script will then export the necessary environment variables to ~/.bashrc for the below command to work. You may need to reload your ~/.bashrc profile first by doing the following:
+
+```
+source ~/.bashrc
+```
+or
+```
+. ~/.bashrc
+```
+After you reload your bashrc profile, you will be able to create your non-interactive authenticated session to Azure using the command below:
 
 ```
 az login \
