@@ -53,6 +53,7 @@ echo
 echo "Environment variable for your SPN $spn successfully created"
 echo "Environment variable for your Password $password successfully created"
 echo "Environment variable for your Tenant ID $tenant successfully created"
+}
 
 # Azure Subscription Selection
     # Check for multiple subscriptions
