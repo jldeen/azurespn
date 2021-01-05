@@ -27,7 +27,7 @@ password=service_principal_password
 tenant=azure_tenant_id
 ```
 
-To help you get started, I created the [Service Principal Creation Script](local_scripts/create_serviceprincipal.sh), which needs to be run on your local machine. You will need to have [Azure CLI](https://docs.microsoft.com/azure/xplat-cli-install) installed. 
+To help you get started, I created the [Service Principal Creation Script](local_scripts/create_serviceprincipal.sh), which needs to be run on your local machine. You will need to have [Azure CLI](https://docs.microsoft.com/azure/xplat-cli-install?WT.mc_id=devops-0000-jessde) installed. 
 
 To run the script, save it to the root of your repository and give it executable permissions:
 
@@ -57,7 +57,7 @@ Example:
 ```
 . ./create_serviceprincipal.sh AzureDemo PasswOrd!! Contributor
 ```
-NOTE: Your password needs to be a minimum of 12 characters and have some complexity incorporated to it. See more here: [Azure Password Policies](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-passwords-policy)
+NOTE: Your password needs to be a minimum of 12 characters and have some complexity incorporated to it. See more here: [Azure Password Policies](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-policy?WT.mc_id=devops-0000-jessde)
 
 The spn creation script will create a service principal for you and assign it the role of Contributor. The script will then export the necessary environment variables for the below command to work.
 
@@ -67,10 +67,10 @@ azure login -u $spn -p $password --tenant $tenant --service-principal
 
 ## See Also:
 
-- [Use Azure CLI to create a service principal to access resources](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authenticate-service-principal-cli)
-- [Use portal to create Active Directory application and service principal that can access resources](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-create-service-principal-portal)
-- [Manage Role-Based Access Control with the Azure command-line interface](https://docs.microsoft.com/azure/active-directory/role-based-access-control-manage-access-azure-cli)
-- [RBAC: Built-in roles](https://docs.microsoft.com/azure/active-directory/role-based-access-built-in-roles)
+- [Use Azure CLI to create a service principal to access resources](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authenticate-service-principal-cli?WT.mc_id=devops-0000-jessde)
+- [Use portal to create Active Directory application and service principal that can access resources](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-create-service-principal-portal?WT.mc_id=devops-0000-jessde)
+- [Manage Role-Based Access Control with the Azure command-line interface](https://docs.microsoft.com/azure/active-directory/role-based-access-control-manage-access-azure-cli?WT.mc_id=devops-0000-jessde)
+- [RBAC: Built-in roles](https://docs.microsoft.com/azure/active-directory/role-based-access-built-in-roles?WT.mc_id=devops-0000-jessde)
 
 
 
